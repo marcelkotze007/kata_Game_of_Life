@@ -1,7 +1,7 @@
 from prettytable import PrettyTable as PT 
 from time import sleep
 
-class Board:
+class Game_of_Life:
     board_layout = [
         ["-","*","-","-","-","-","*","*"],
         ["-","*","*","-","*","-","-","*"],
@@ -112,19 +112,19 @@ class Board:
             self.board_layout[x][y] = '*'
 
 if __name__ == '__main__':
-    Bd = Board()
+    Gf = Game_of_Life()
     while True:
-        Bd.Check_Pos()
-        Bd.Check_Neighbors()
-        Bd.Check_Possible_New_life_Locations()
-        Bd.Check_Still_Alive()
-        Bd.Create_New_Life()
-        Bd.Update_View()
+        Gf.Check_Pos()
+        Gf.Check_Neighbors()
+        Gf.Check_Possible_New_life_Locations()
+        Gf.Check_Still_Alive()
+        Gf.Create_New_Life()
+        Gf.Update_View()
         
         draw = PT()
-        draw.add_rows(Bd.board_layout)
-        print("Generation: " + str(Bd.gen_count))
+        draw.add_rows(Gf.board_layout)
+        print("Generation: " + str(Gf.gen_count))
         print(draw)
 
-        Bd.gen_count += 1
+        Gf.gen_count += 1
         sleep(2)
