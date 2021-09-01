@@ -10,6 +10,7 @@ class Board:
     alive_pos_list = []
     neighbor_dic = {}
     possible_new_life_list = []
+    gen_count = 1
     
     def Check_Pos(self):
         i = 0
@@ -80,7 +81,7 @@ class Board:
 
         self.possible_new_life_list = temp_list
     
-    def Check_still_Alive(self):
+    def Check_Still_Alive(self):
         temp_del_list = []
         for life in self.neighbor_dic.keys():
             value = self.neighbor_dic[life]
@@ -116,12 +117,14 @@ if __name__ == '__main__':
         Bd.Check_Pos()
         Bd.Check_Neighbors()
         Bd.Check_Possible_New_life_Locations()
-        Bd.Check_still_Alive()
+        Bd.Check_Still_Alive()
         Bd.Create_New_Life()
         Bd.Update_View()
         
         draw = PT()
         draw.add_rows(Bd.board_layout)
+        print("Generation: " + str(Bd.gen_count))
         print(draw)
 
-        sleep(3)
+        Bd.gen_count += 1
+        sleep(2)
