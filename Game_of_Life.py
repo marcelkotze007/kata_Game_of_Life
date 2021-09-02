@@ -6,18 +6,24 @@ class Game_of_Life:
         ["-","*","-","-","-","-","*","*"],
         ["-","*","*","-","*","-","-","*"],
         ["-","-","-","*","*","*","-","-"],
+        ["-","-","-","-","-","-","-","-"],
+        ["-","*","-","-","-","-","*","*"],
+        ["-","*","*","-","*","-","-","*"],
+        ["-","-","-","*","*","*","-","-"],
         ["-","-","-","-","-","-","-","-"]]
     alive_pos_list = []
     neighbor_dic = {}
     possible_new_life_list = []
     gen_count = 1
+    size_x = len(board_layout)
+    size_y = len(board_layout[0])
     
     def Check_Pos(self):
         i = 0
         self.alive_pos_list = []
-        while i < 4:
+        while i < self.size_x:
             ii = 0
-            while ii < 8:
+            while ii < self.size_y:
                 if self.board_layout[i][ii] == "*":
                     pos_true = [i,ii]
                     self.alive_pos_list.append(pos_true)
@@ -76,7 +82,7 @@ class Game_of_Life:
         for i in self.possible_new_life_list:
             temp_list = self.possible_new_life_list
             x, y = i
-            if (x > 3 or y > 7) or (x < 0 or y < 0):
+            if (x > self.size_x - 1 or y > self.size_y - 1) or (x < 0 or y < 0):
                 temp_list.remove(i)
 
         self.possible_new_life_list = temp_list
